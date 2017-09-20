@@ -16,7 +16,7 @@ Những state mặc định cho workflow mặc định là
 |           | Canceled                | Canceled     | Completed                   |
 |           |                         |              | Canceled                    |
 
-Những Worflow state được định nghĩa như là một phần của định nghĩa workflow trong file cấu hình YAML. Đây là một ví dụ cách mà state cho Fulfillment order workflow được định nghĩa bằng module Commerce Order.
+Những Workflow state được xác định như là một phần của định nghĩa workflow trong file cấu hình YAML. Đây là một ví dụ cách mà state cho Fulfillment order workflow được định nghĩa bằng module Commerce Order.
 ```yaml
 // commerce_order.workflows.yml
 
