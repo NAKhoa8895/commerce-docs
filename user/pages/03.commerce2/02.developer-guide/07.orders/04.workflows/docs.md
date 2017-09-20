@@ -4,14 +4,16 @@ taxonomy:
     category: docs
 ---
 
-The fulfillment process of an order depends on the type of store a site is running and its operational processes. A store that sells digital products might receive an order, capture the payment, and send the products electronically and close the order all automatically in one go. A drop-shipping store may receive an order, forward the order to an external fulfillment service, verify availability, capture payment, and ship the products, all as separate steps of the process, some programmatically performed and some manually.
+Quá trình fulfillment của đơn hàng dựa trên kiểu của cửa hàng  đang chạy trang và quy trình hoạt động của nó. Một cửa hàng bán sản phẩm kỹ thuật số có thể nhận được hóa đơn, thu thanh toán, và gửi sản phẩm bằng điển tử (copy, download ...) và đóng toàn bộ đơn hàng một cách tự động. Một cửa hàng drop-shipping có thể nhận một đơn hàng, chuyển đơn đặt hàng đến một dịch vụ bên ngoài, xác minh tính khả dụng, thu thanh toán, và giao sản phẩm, toàn bộ coi như các bước riêng của tiến trình, một số được thực hiện bằng phần mềm và một một số được thực hiện bằng tay.
 
-Commerce 2 allows developers the flexibility to customise the steps that an order goes through, from creation to completion. By default, it makes available four different workflows: Default, Default with validation, Fulfillment, and Fulfillment with validation. Custom workflows can be defined by developers. An order type can be associated with a specific workflow, and that forces the order to follow that workflow's rules.
+Commerce 2 cho phép lập trình viên linh hoạt tùy chỉnh các bước mà đơn đặt hàng cần  đi qua, từ lúc khởi tạo tới lúc hoàn thành. Theo mặc định thì có 4 loại workflows: Default, Default with validation, Fulfillment, và Fulfillment with validation. Lập trình viên có thể được định nghĩa Workflows custom. Một kiểu đơn hàng có thể liên kết với workflow riêng, và điều này bắt buộc đơn hàng phải theo luật của workflow.
 
-Each workflow consists of states and transitions.
+Mỗi workflow bao gồm state và transitions.
 
-## Comparison to Commerce 1
 
-Users of Commerce 1 might be wondering what are the differences in the architecture of Commerce 2. Commerce 1 defined order statuses grouped together in states. For example, an order going through the checkout process would move through the Checkout:Checkout, Checkout:Review, Checkout:Payment, Checkout:Complete statuses, all part of the Checkout state group. That setup was a source of confusion and it was causing some technical issues as well because it was forcing workflows that were only loosely related (order workflow, checkout workflow, payment workflow, fulfillment workflow) to form one single workflow. That made defining clear paths between states unnecessarily complicated.
+## So sánh với Commerce 1
 
-Commerce 2 decouples workflows making transitions between states straightforward.
+
+User của commerce 1 có thể tự hỏi điều khác biệt trong cấu túc của Commerce 2. Commerce 1 định nghĩa status đơn hàng được nhóm với nhau trong state. Ví dụ, một đơn hàng thông qua quá trình thanh toán sẽ được chuyển thong qua các status của Checkout: Checkout, Checkout:Review, Checkout:Payment, Checkout:Complete, đây toàn bộ các phần của nhóm Checkout state. Cài đặt này là nguồn gốc gây nhâm nhầm lẫn và cũng gây ra một số vấn đề kỹ thuật vì nó đã buộc các workflow liên quan không chặt chẽ với nhau  (order workflow, checkout workflow, payment workflow, fulfillment workflow) hợp lại với nhau thành một workflow. Điều này xác định path giữa các state phức tạp một cách không cần thiết.
+
+Commerce 2 tách riêng workflows làm cho việc cuhyển tiếp giữa các states trở nên đơn giản.

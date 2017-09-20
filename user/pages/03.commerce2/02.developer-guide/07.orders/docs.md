@@ -6,46 +6,43 @@ taxonomy:
 
 ! We need help filling out this section! Feel free to follow the *edit this page* link and contribute.
 
-Orders contain a list of order items and customer information. Orders
-have states that are controlled through State Machine.
+Đơn hàng chứa dach sách của sản phẩm trong đơn hàng và thông tin khách hàng. Đơn hàng có trạng thái được điều khiển thông qua State Machine
 
 [Order items](02.order-items) - Orders contain order items, which represent purchased items.
 
-[Order types](01.order-types) - You can have different order types. Order types have their
-own settings when it comes to cart, checkout, and its processing.
+[Order types](01.order-types) - Bạn có thể có nhiều kiểu đơn hàng. Mỗi Kiểu đơn hàng có tùy chỉnh riêng khi nó đến cart, checkout, và khi processing.
 
-[Workflows](04.workflows) - Each order type can use a different order workflow depending on the type of items sold, whether it's shippable etc.
+[Workflows](04.workflows) - Mỗi loại đơn hàng sử dụng luồng xử lý đơn hàng khác nhau dựa trên kiểu của mặt hàng đang bán, cho dù mặt hàng có thể ship được v.v
 
 Advanced topics
 ---------------
 
-[Order processing](03.order-processing) - Allows you to process an order, when the system
-recalculates order item prices and availability.
+[Order processing](03.order-processing) - Cho phép bạn xử lý một đơn hàng, khi hệ thống đang tính lại giá  của mặt hàng và mặt hàng đó có khả dụng hay không.
 
 
 ```php
 
     /**
      * id [String]
-     *   The primary key for this order type.
+     *   Khóa chính cho kiểu hóa đơn này.
      *
      * label [String]
-     *   The label for this order type.
+     *   Nhãn hiển thị cho kiểu hóa đơn này.
      *
      * status [Bool] - [OPTIONAL, DEFAULTS TO TRUE]
      *   [AVAILABLE = FALSE, TRUE]
-     *   Whether or not it's enabled or disabled. 1 for enabled.
+     *   Module này có được bật không. 1 để enabled.
      *
      * workflow [String] - [DEFAULT = order_default]
      *   [AVAILABLE = order_default, order_default_validation, order_fulfillment, order_fulfillment_validation]
-     *   The workflow id to use as the workflow.
+     *   Workflow ID để sử dụng như một workflow.
      *
      * refresh_mode [String] - [DEFAULT = always]
      *   [AVAILABLE = always, customer]
-     *   The refresh mode to use as the refresh mode.
+     *   Chế độ refresh sử dụng.
      *
      * refresh_frequency [Integer] - [DEFAULT = 30]
-     *   The refresh freuency in seconds.
+     *   Thời gian refresh một lần.
      */
     $order_type = \Drupal\commerce_order\Entity\OrderType::create([
       'status' => TRUE,
@@ -57,7 +54,7 @@ recalculates order item prices and availability.
     ]);
     $order_type->save();
 
-    // This must be called after saving.
+    // Phải gọi hàm này sau khi lưu order type.
     commerce_order_add_order_items_field($order_type);
 
 ```
@@ -67,7 +64,7 @@ Loading an order type
 
 ```php
 
-    // Loading is based off of the primary key [String] that was defined when creating it.
+    // Load kiểu order này dựa vào khóa chính [String] đã được định nghĩa khi tạo
     $order_type = \Drupal\commerce_order\Entity\OrderType::load('custom_order_type');
 
 ```
@@ -79,20 +76,20 @@ Creating order item types
 
     /**
      * id [String]
-     *   The primary key for this order item type.
+     *   Khóa chính cho kiểu mặt hàng trong hóa đơn này
      *
      * label [String]
-     *   The label for this order item type.
+     *   Nhạn của kiểu mặt hàng trong hóa đơn này.
      *
      * status [Bool] - [OPTIONAL, DEFAULTS TO TRUE]
      *   [AVAILABLE = FALSE, TRUE]
-     *   Whether or not it's enabled or disabled. 1 for enabled.
+     *    Module này có được bật không. 1 để enabled.
      *
      * purchasableEntityType [String] - [DEFAULT = commerce_product_variation]
-     *   Foreign key to use for the purchasable entity type.
+     *  Khoá ngoại tham chiếu tới những kiểu entity có thể mua được
      *
      * orderType [String] - [DEFAULT = default]
-     *   Foreign key to use for the order type.
+     *   Khoái ngoại tham chiếu tới kiểu đơn hàng
      */
     $order_item_type = \Drupal\commerce_order\Entity\OrderItemType::create([
       'id' => 'custom_order_item_type',
@@ -109,7 +106,7 @@ Loading an order item type
 
 ```php
 
-    // Loading is based off of the primary key [String] that was defined when creating it.
+    // Load kiểu mặt hàng trong hóa đơn này dựa vào khóa chính [String] được định nghĩa khi tạo.
     $order_item_type = \Drupal\commerce_order\Entity\OrderItemType::load('custom_order_item_type');
 
 ```
@@ -121,19 +118,19 @@ Creating order items
 
     /**
      * type [String] - [DEFAULT = product_variation]
-     *   Foreign key to use for the order item type.
+     *   Khóa ngoại dùng để tham chiếu tới kiểu mặt hàng trong đơn hàng
      *
      * purchased_entity [Integer | \Drupal\commerce\PurchasableEntityInterface]
-     *    Foreign key to use for the purchased entity. Either the id, or object implementing the interface.
+     *    Khóa ngoại dùng để tham chiếu tới các entity đã được thêm vào đơn hàng. ID, hoặc đối tượng thực hiện giao dịch 
      *
      * quantity [Integer]
-     *   How many of the purchased items.
+     *  Có bao nhiêu mặt hàng này trong hóa đơn.
      *
      * unit_price [\Drupal\commerce_price\Price]
-     *   The price per each item, not the total.
+     *   Giá của mỗi mặt hàng, không phải là tổng giá của mặt hàng này
      *
      * adjustments [OPTIONAL] - [Array(Drupal\commerce_order\Adjustment)]
-     *   Array of any price adjustments.
+     *   Mảng chứa bất cứ giá điều chỉnh nào (thuế)
      */
     $order_item = \Drupal\commerce_order\Entity\OrderItem::create([
       'type' => 'custom_order_item_type',
@@ -143,11 +140,11 @@ Creating order items
     ]);
     $order_item->save();
 
-    // You can set the quantity with setQuantity.
+    // Bạn có thể set số lượng bằng hàm setQuantity().
     $order_item->setQuantity('1');
     $order_item->save();
 
-    // You can also set the price with setUnitPrice.
+    // Bạn cũng có thể đặt giá với hàm setUnitPrice().
     $unit_price = new \Drupal\commerce_price\Price('9.99', 'USD');
     $order_item->setUnitPrice($unit_price);
     $order_item->save();
@@ -159,8 +156,8 @@ Loading an order item
 
 ```php
 
-    // Loading is based off of the primary key [Integer]
-    //   1 would be the first one saved, 2 the next, etc.
+    // Load mặt hàng trong đơn hàng dựa vào khóa chính [Integer]
+    //   1 sẽ là item được lưu đầu tiên, 2 là item tiếp theo, v.v.
     $order_item = \Drupal\commerce_order\Entity\OrderItem::load(1);
 
 ```
@@ -172,41 +169,41 @@ Creating orders
 
     /**
      * type [String] - [DEFAULT = default]
-     *   Foreign key to use for the order type.
+     *   Khóa ngoại để tham chiếu đến kiểu hóa đơn
      *
      * state [String] - [DEFAULT = draft]
      *   [AVAILABLE = draft, completed, canceled]
-     *   The state the order is in.
+     *   Trạng thái hiện tại của đơn hàng.
      *
      * mail [String]
-     *   The email address the order belongs to.
+     *   Địa chỉ email sở hữu đơn hàng.
      *
      * uid [Integer]
-     *   The user id the order belongs to.
+     *   User id sở hữu đơn hàng.
      *
      * ip_address [String]
-     *   The ip address the order was created from.
+     *   Địa chỉ IP tạo đơn hàng.
      *
      * order_number [Integer | String] - [OPTIONAL, DEFAULTS TO id]
-     *   The order number for the order. If left out, defaults to the order's id.
+     *   Số thứ tự của đơn đặt hàng . Nếu để trống, mặt định là id của đơn hàng.
      *
      * billing_profile [\Drupal\profile\Entity\ProfileInterface]
-     *   The billing profile for the order.
+     *   Profile thanh toán cho đơn hàng
      *
      * store_id [Integer]
-     *   The foreign key for the store that this order belongs to.
+     *   Khóa ngoại tham chiếu đến cửa hàng mà đơn hàng thuộc về
      *
      * order_items [Array(\Drupal\commerce_order\Entity\OrderItemInterface]
-     *   Array of all the order items that belong to this order.
+     *   Chuối chứa toàn bộ sản phẩm thuộc về đơn hàng này.
      *
      * adjustments [OPTIONAL] - [Array(Drupal\commerce_order\Adjustment)]
-     *   Array of any price adjustments.
+     *   Giá tiền điều chỉnh thêm (shipping)
      *
      * placed [Timestamp]
-     *   The time the order was placed.
+     *   Thời gian đơn hàng được đặt
      *
      * completed [OPTIONAL] - [Timestamp]
-     *   The time the order was completed.
+     *   Thời gian đơn hàng hoàn thành.
      */
 
     // Create the billing profile.
@@ -238,8 +235,8 @@ Loading an order
 
 ```php
 
-    // Loading is based off of the primary key [Integer]
-    //   1 would be the first one saved, 2 the next, etc.
+    // Load đơn hàng dựa vào khóa chính [Integer]
+    //   1 sẽ load đơn hàng đầu tiên, 2 load đơn hàng tiếp theo, v.v.
     $order = \Drupal\commerce_order\Entity\Order::load(1);
 
 ```

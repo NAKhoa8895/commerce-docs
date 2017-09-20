@@ -1,23 +1,27 @@
 ---
-title: Choosing a workflow
+title: Choosing a workflow - Chọn workflow
 taxonomy:
     category: docs
 ---
 
-! This document also contains general order management and processing.
+! Tài liệu này cũng bao gồm quản lý đơn hàng và xử lý chung.
 
-## Associating an Order Type with a Workflow
+## Liên kết kiểu order vời một Workflow.
 
 An order type can be associated with a specific workflow, and that forces the order to follow that workflow's rules such as to only move through the defined transitions. To associate an order type with an order workflow, go to ``/admin/commerce/config/order-types`` and select to Edit the desired order type. You can then choose the desired workflow from the Workflow dropdown field. Save the form.
 
+Một kiểu đơn hàng có thể liên kết với workflow riêng, và điều này ép đơn hàng phải theo luật của workflows như là chỉ di chuyển thông qua các transitions đã được định nghĩa. Để liên kệt một kiểu đơn hàng với đon hàng workflow, vào ``/admin/commerce/config/order-types`` để chỉnh sửa loại đơn hàng mong muốn. Bạn có thể chọn workflow mong muốn thông qua trường Workflow dropdown. Lưu form này lại.
+
 ![Associating an Order Type with an Order Workflow](../../images/order_workflow_association.jpg)
 
-Changing the Order Workflow
+Thay đổi Order Workflow
 ===========================
 
-Order types can have different workflows depending on what type of products your store is selling and if the products are shippable etc. The default commerce order workflow just has two states, Draft and Completed. However, if you're running a big store with products that are shippable, the "Fulfillment, with Validation" workflow might be the best suited for your needs.
 
-You can change the order type workflow by going to `/admin/commerce/config/order-types`. Then, select the order type you'd like to make the change to and click "Edit". You can now change the workflow by selecting the "Fulfillment, with validation" item fom the `Workflow` select list.
+Loại đơn hàng có thể có các kiểu workflows khác nhau dựa vào loại sản phẩm mà cửa hàng bạn đang bán và nếu sản phẩm có thể vận chuyển được v.v. Workflow mặc định của đơn hàng có 2 trạng thái, Draft và Completed. Tuy nhiên, nếu bạn chạy đang điều hành một cửa hàng lớn với sản phẩm có thể giao được, Workflow "Fulfillment, with Validation" có thể là thứ phù hợp nhất mà bạn cần.
+
+
+Bạn có thể thay đổi kiểu workflow của đơn hàng bằng cách vào `/admin/commerce/config/order-types`. Sau đó, chọn kiểu đơn hàng bạn muốn thay đổi và click "Edit". Bây giò, bạn có thể thay đổi workflow bằng cách chọn "Fuilfillment, with validation" từ select list `Workflow`.
 
 ![](../../images/select_order_type_workflow.png)
 
