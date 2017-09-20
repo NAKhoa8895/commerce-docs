@@ -4,9 +4,9 @@ taxonomy:
     category: docs
 ---
 
-Workflow States are the different states that an Order can exist at. For example, in the default Fulfillment workflow, the order is in the Draft state when a customer is adding products to the shopping cart, after it has been submitted it is in the Fulfillment state (awaiting for the store to fulfill the order), and after the products have been shipped the order is in the Completed State.
+Workflow states là những state khác nhau mà đơn hàng có thể tồn tại. Ví dụ, trong workflow Fulfilment mặc định, đơn hàng trong state Draft khi khách hàng thêm sản phẩm vào giỏ hàng, sau khi giỏ hàng được gửi thì đơn hàng có state là Fulfillment (đợi cửa hàng hoàn thành đơn hàng), và sau khi sản phẩm được giao đi thì state là Completed
 
-The default states for the default workflows are:
+Những state mặc định cho workflow mặc định là
 
 | Default   | Default with validation | Fulfillment  | Fulfillment with validation |
 |----------------------------------------------------------------------------------|
@@ -16,8 +16,7 @@ The default states for the default workflows are:
 |           | Canceled                | Canceled     | Completed                   |
 |           |                         |              | Canceled                    |
 
-Workflow States are defined as part of the workflow definition in a YAML configuration file. Here is an example of how states for the Fulfillment order workflow are defined by the Commerce Order module.
-
+Những Worflow state được định nghĩa như là một phần của định nghĩa workflow trong file cấu hình YAML. Đây là một ví dụ cách mà state cho Fulfillment order workflow được định nghĩa bằng module Commerce Order.
 ```yaml
 // commerce_order.workflows.yml
 
