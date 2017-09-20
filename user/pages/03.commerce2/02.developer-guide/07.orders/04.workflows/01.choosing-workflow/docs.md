@@ -25,67 +25,74 @@ Bạn có thể thay đổi kiểu workflow của đơn hàng bằng cách vào 
 
 ![](../../images/select_order_type_workflow.png)
 
-Now, let's take a look at how this new workflow works.
+Hãy xem thử cách làm việc của workflow này
 
 ## Order Fulfillment with Validation Workflow
 
-The fulfillment, with validation, order process moves through the following cycle:
+Với workflow Fulfillment, with validation, quá trình xử lý  diễn ra theo vòng tròn sau:
 
 ![](../../images/order_workflow.png)
 
-It starts with the order being in the shopping cart, which is the Draft/Cart state, then, once the order is placed, it is put in the Validation state. Once you're ready to ship the goods, the order is moved to the Fulfillment state. And finally, once it leaves our store, the order is officially Completed.
+Bắt đầu với đơn hàng đang trong giỏ hàng, đang ở state Draft/Cart, sau đó, khi đơn hàng đã được đặt, nó được đặt vào state Validation. Khi bạn đã sẵn sàng để ship hàng, đơn hàng được chuyển sang state fulfillment. Và cuối cùng, một khi hàng đã rời khỏi cửa hàng, đơn hàng chính thức hoàn thành (state Completed)
 
-Now, that you know the process, let's take a look at how you can create orders on behalf of customers and move them along the order life cycle.
+Bây giờ bạn đã hiểu tiến trình, hãy xem thử làm cách nào để bạn có thể tạo những đơn hàng thay cho khách hàng và di chuyển chúng theo vòng xử lý đơn hàng
 
 Creating an Order
 -----------------
-Site administrators can create orders on behalf of their customers by going to ``/admin/commerce/orders/add``. From here, you can either create a new order for an existing customer (chosen from the autocomplete search box). Or, you can create a new customer on the fly by providing just an email address.
 
+Site admin có thể tạo đơn hàng thay cho khách hàng của họ bằng cách vào ``/admin/commerce/orders/add``. Từ đây, bạn có thể tạo một đơn hàng mới cho những khách hàng cũ (chọn từ khung search autocomplete). Hoặc bạn cũng có thể tạo một khách hàng mới ngay lập tức bằng cách cung cấp địa chỉ email. 
 ![](../../images/create_a_new_order.png)
 
-**Note:** You also have the option to create the order for a different date.
+**Note:** Bạn cũng có tùy chỉnh để tạo đơn hàng có ngày khác.
 
-Once you've made the appropriate selections, you are taken to the order creation page where you enter the billing details and the products in the order.
+Khi bạn đã có những lựa chọn thích hợp, bạn sẽ được đưa đến trang tạo đơn hàng nơi mà bạn nhập thông tin đơn hàng và sản phẩm trong đơn hàng.
 
 ![](../../images/order_details.png)
 
-As you move further down, you'll see that there is an "Adjustments" section. This where you can add promotions, add a shipping amount, add tax, as well as, any custom amount to the order total. ([See steps on creating a promotion](../../../06.product-merchandising/01.create-promotion))
+Khi bạn di chuyển xuống dưới, bạn sẽ thấy có một vùng "Adjustments". Đây sẽ là nơi mà bạn thêm khuyến mãi, thêm giá shipping, thêm thuế và các loại giá trị ảnh hưởng đến tổng giá trị đơn hàng. ([See steps on creating a promotion](../../../06.product-merchandising/01.create-promotion))
 
- And finally, you can apply coupons to the order. ([See steps on creating a coupon](../../../06.product-merchandising/02.create-coupon))
+ Và cuối cùng, bạn có thể thêm coupon vào đơn hàng. ([See steps on creating a coupon](../../../06.product-merchandising/02.create-coupon))
 
 ![](../../images/applying_coupons_to_order.png)
 
-If you already have promotions running, this will automatically be reflected in the item pricing and the overall order total.
+Nếu bạn đã có khuyến mãi đang chạy, việc này sẽ tự động được ánh xạ sang giá của sản phẩm và tổng tiền của đơn đặt hàng.
 
-Saving an Order
+Lưu một đơn hàng
 ---------------
 
-Now that you've added all the order details, let's save the order. You also have the option of saving this new order to our cart. This will automatically add the products in this order to the shopping cart so you can complete the checkout by going to ``/cart``.
+Bây giờ sau khi bạn đã thêm toàn bộ chi tiết dơn hàng, hãy lưu đơn hàng. Bạn sẽ tùy chỉnh cho việc lưu đơn hàng mới này xuống giỏ hàng. Điều này sẽ tự động thêm sản phẩm trong đơn hàng này đến giỏ hàng nên bạn có thể hoàn thành thanh toán bằng cách đến ``/cart``.
 
 ![](../../images/save_order_to_cart.png)
 
 Now, click to view the order. Notice that a discount has been automatically applied to the order total as there was a "20% Off" promotion running store-wide. Also, notice that the order is currently in `Draft` state.
 
+Bây giờ ấn vào view the order. Lưu ý coupon sẽ được tự động áp dụng cho tổng đơn hàng và đang có một chương trình khuyến mãi 20% chạy khắp cửa hàng. Lưu ý thêm, đơn hàng đang trong state Draft.
+
 ![](../../images/promotion_applied_to_order.png)
 
-Adding Payments
+Thêm thanh toán
 ----------------
 
-As an admin, once you've got all the order details done, our next job would be to complete payment on the order. That's where the 'Payments' tab comes in. The payments page allows us to process a Credit Card/Email Money Transfer/Bank Transfer/Cheque payment for the order using the store's preferred Payment Gateway.
+Là admin, khi bạn dẵ hoàn thành xong các chi tiết đơn hàng, việc tiếp theo sẽ là hoàn thành thanh toán trong đơn hàng. Đó là nơi mà tab Payment được đưa vào. Trang Payments cho phép chúng ta xử lý Credit Card/Email Chuyển tiền/Bank Transfer/Cheque payment giúp cho đơn hảng sử dụng payment gateway của cửa hàng.
 
 ![](../../images/capture_order_payment.png)
 
 Now, that you've got money for the goods from the customer, let's go ahead and officially place the order by clicking on the "Place order" button. This will put the order in `Validation` state.
 
+Bây giờ, bạn đã nhận được tiền cho hàng hóa từ khách hàng, hãy tiếp tục bằng cách chính thức đặt hàng bằng cách nhận nút "Place order". Điều này sẽ chuyển state đơn hàng sang `Validation`.
+
+
 ![](../../images/order_in_validation_state.png)
 
-Completing the Order
+Hoàn thành đơn đặt hàng
 --------------------
 
-The next steps are pretty obvious, once you are ready to ship the order, you must click the "Validate Order" button and it will put the order in `Fulfillment` state.
+Bước tiếp theo khá là hiển nhiên, khi bạn đã sẵn sàng để chuyển hàng, bạn phải click vào nút "Validate Order" và đơn hàng của bạn sẽ chuyển sang trạng thái `Fulfillment`.
 
 ![](../../images/order_in_fulfillment_state.png)
 
 And finally, once the order has shipped out, you can hit the "Fulfill Order" button and the order enters `Completed` state.
+
+Và cuối cùng, khi đơn hàng đã được chuyển đi, bạn có thể ấn nút "Fullfill Order" và đơn hàng đã vào state `Completed`
 
 ![](../../images/order_completed.png)
