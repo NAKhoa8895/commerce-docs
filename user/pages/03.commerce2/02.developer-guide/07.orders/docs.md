@@ -6,13 +6,12 @@ taxonomy:
 
 ! We need help filling out this section! Feel free to follow the *edit this page* link and contribute.
 
-Đơn hàng chứa dach sách của sản phẩm trong đơn hàng và thông tin khách hàng. Đơn hàng có trạng thái được điều khiển thông qua State Machine
+Đơn hàng chứa dach sách của sản phẩm trong đơn hàng và thông tin khách hàng. Đơn hàng có state được điều khiển thông qua State Machine
 
-[Order items](02.order-items) - Orders contain order items, which represent purchased items.
+[Order items](02.order-items) - Đơn hàng chứa mặt hàng, đại diện cho những mặt hàng đã đặt vào giỏ hàng.
 
-[Order types](01.order-types) - Bạn có thể có nhiều kiểu đơn hàng. Mỗi Kiểu đơn hàng có tùy chỉnh riêng khi nó đến cart, checkout, và khi processing.
-
-[Workflows](04.workflows) - Mỗi loại đơn hàng sử dụng luồng xử lý đơn hàng khác nhau dựa trên kiểu của mặt hàng đang bán, cho dù mặt hàng có thể ship được v.v
+[Order types](01.order-types) - Bạn có thể có nhiều kiểu đơn hàng. Mỗi Kiểu đơn hàng có tùy chỉnh riêng khi nó đến cart, checkout, và quá trình của nó.
+[Workflows](04.workflows) - Mỗi loại đơn hàng sử dụng order workflow khác nhau dựa trên kiểu của mặt hàng đang bán, cho dù mặt hàng có thể ship được v.v
 
 Advanced topics
 ---------------
@@ -24,14 +23,14 @@ Advanced topics
 
     /**
      * id [String]
-     *   Khóa chính cho kiểu hóa đơn này.
+     *   Khóa chính cho kiểu đơn hàng này.
      *
      * label [String]
-     *   Nhãn hiển thị cho kiểu hóa đơn này.
+     *   Nhãn hiển thị cho kiểu đơn hàng này.
      *
      * status [Bool] - [OPTIONAL, DEFAULTS TO TRUE]
      *   [AVAILABLE = FALSE, TRUE]
-     *   Module này có được bật không. 1 để enabled.
+     *   Kiểu đơn hàng này có được bật không. 1 để bật.
      *
      * workflow [String] - [DEFAULT = order_default]
      *   [AVAILABLE = order_default, order_default_validation, order_fulfillment, order_fulfillment_validation]
@@ -39,7 +38,7 @@ Advanced topics
      *
      * refresh_mode [String] - [DEFAULT = always]
      *   [AVAILABLE = always, customer]
-     *   Chế độ refresh sử dụng.
+     *   Chế độ refresh được sử dụng.
      *
      * refresh_frequency [Integer] - [DEFAULT = 30]
      *   Thời gian refresh một lần.
@@ -59,27 +58,27 @@ Advanced topics
 
 ```
 
-Loading an order type
+Loading kiểu đơn hàng
 ---------------------
 
 ```php
 
-    // Load kiểu order này dựa vào khóa chính [String] đã được định nghĩa khi tạo
+    // Load kiểu đơn hàng này dựa vào khóa chính [String] đã được định nghĩa khi tạo
     $order_type = \Drupal\commerce_order\Entity\OrderType::load('custom_order_type');
 
 ```
 
-Creating order item types
--------------------------
+Tạo kiểu order item
+-------------------
 
 ```php
 
     /**
      * id [String]
-     *   Khóa chính cho kiểu mặt hàng trong hóa đơn này
+     *   Khóa chính cho kiểu mặt hàng trong đơn hàng này
      *
      * label [String]
-     *   Nhạn của kiểu mặt hàng trong hóa đơn này.
+     *   Nhạn của kiểu mặt hàng trong đơn hàng này.
      *
      * status [Bool] - [OPTIONAL, DEFAULTS TO TRUE]
      *   [AVAILABLE = FALSE, TRUE]
@@ -101,18 +100,18 @@ Creating order item types
     $order_item_type->save();
 ```
 
-Loading an order item type
+Loading một kiểu order item
 --------------------------
 
 ```php
 
-    // Load kiểu mặt hàng trong hóa đơn này dựa vào khóa chính [String] được định nghĩa khi tạo.
+    // Load kiểu mặt hàng trong đơn hàng này dựa vào khóa chính [String] được định nghĩa khi tạo.
     $order_item_type = \Drupal\commerce_order\Entity\OrderItemType::load('custom_order_item_type');
 
 ```
 
-Creating order items
---------------------
+Tạo order items
+----------------
 
 ```php
 
@@ -124,7 +123,7 @@ Creating order items
      *    Khóa ngoại dùng để tham chiếu tới các entity đã được thêm vào đơn hàng. ID, hoặc đối tượng thực hiện giao dịch 
      *
      * quantity [Integer]
-     *  Có bao nhiêu mặt hàng này trong hóa đơn.
+     *  Có bao nhiêu mặt hàng này trong đơn hàng.
      *
      * unit_price [\Drupal\commerce_price\Price]
      *   Giá của mỗi mặt hàng, không phải là tổng giá của mặt hàng này
@@ -151,8 +150,8 @@ Creating order items
     
 ```
 
-Loading an order item
----------------------
+Loading một order item
+----------------------
 
 ```php
 
@@ -162,18 +161,18 @@ Loading an order item
 
 ```
 
-Creating orders
+Tạo một đơn hàng
 ---------------
 
 ```php
 
     /**
      * type [String] - [DEFAULT = default]
-     *   Khóa ngoại để tham chiếu đến kiểu hóa đơn
+     *   Khóa ngoại để tham chiếu đến kiểu đơn hàng
      *
      * state [String] - [DEFAULT = draft]
      *   [AVAILABLE = draft, completed, canceled]
-     *   Trạng thái hiện tại của đơn hàng.
+     *   state hiện tại của đơn hàng.
      *
      * mail [String]
      *   Địa chỉ email sở hữu đơn hàng.
@@ -230,8 +229,8 @@ Creating orders
     
 ```
 
-Loading an order
-----------------
+Loading một đơn hàng
+--------------------
 
 ```php
 

@@ -12,14 +12,14 @@ thống.
 ![Order workflow settings](../images/order-types-workflow.png)
 
 
-Đơn hàng có quy trình công việc cụ thể xác định những state chuyển tiếp
+Đơn hàng có workflow cụ thể là xác định những state và transitions
 nào mà đơn hàng có thể chuyển vào. Mỗi loại đơn hàng có những quy trình công 
 việc riêng của nó
 
 Điều này có nghĩa  là kiểu đơn hàng mặc định của bạn, kiểu đơn hàng có 
-sản phẩm có thể vận chuyển được, có thể sử dụng quy trình công việc "Fullfillment".
-Trong khi đó, các loại hàng hóa điện tử có thể có kiểu quy trinh công việc đơn giản 
-hơn: 'workflow'
+sản phẩm có thể vận chuyển được, có thể sử dụng Workflow "Fullfillment".
+Trong khi đó, các loại hàng hóa kỹ thuật số có thể có kiểu workflow đơn giản 
+hơn: 'Default workflow'
 
 ![Order refresh settings](../images/order-types-refresh.png)
 
@@ -30,8 +30,8 @@ order.](../03.order-processing)
 
 ![Order type cart settings](../images/order-types-cart.png)
 
-Module giỏ hàng cho phép mỗi loại đơn hàng điều chỉnh view được sử dụng
-mặc dinh khi xuất thông tin giỏ hàng trong block giỏ hàng hoặc form giỏ 
+Module giỏ hàng cho phép mỗi loại đơn hàng điều chỉnh view mặc định được sử dụng khi 
+xuất thông tin giỏ hàng trong block giỏ hàng hoặc form giỏ 
 hàng
 
 ![Order type checkout settings](../images/order-types-checkout.png)

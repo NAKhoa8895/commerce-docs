@@ -1,21 +1,21 @@
 ---
-title: Subscribing to Transition Events
+title: Subscribing to Transition Events - Đăng ký Transition Events
 taxonomy:
     category: docs
 ---
 
 ! We had duplicate examples of this, need to consolidate. Both posted here.
 
-For an actual example being used in Drupal Commerce, check out the state machine transition event subscriber being used in commerce_order to set an order's placed timestamp:
+Cho ví dụ thật sự được sử dụng trong Drupal Commerce, hãy xem qua state machine transition event subscriber được sử dụng trong commerce_order để thiết lập cho thời gian mà đơn hàng được đặt mua (timestamp):
 * [commerce_order.services.yml]
 * [TimestampEventSubscriber.php]
 
 Finding Transitions
 -------------------
 
-Transition information can be found in a `{module}.workflows.yml`.
+Thông tin Transition có thể tìm thấy trong `{module}.workflows.yml`.
 
-Example from commerce_order:
+Ví dụ từ commerce_order:
 
 ```yaml
     # commerce_order.services.yml
@@ -41,10 +41,10 @@ Example from commerce_order:
           to:   canceled
 ```
 
-Reacting to Transitions
+Phản ứng với Transitions
 -----------------------
 
-Example - reacting to the order 'place' transition.
+Ví dụ - Phản ứng với  order 'place' transition.
 
 ```php
     // mymodule/src/EventSubscriber/MyModuleEventSubscriber.php
@@ -69,11 +69,11 @@ Example - reacting to the order 'place' transition.
     }
 ```
 
-Telling Drupal About Your Event Subscriber
+Khai báo cho Drupal về đăng ký Event của bạn
 
-Your event subscriber should be added to `{module}.services.yml` in the base directory of your module.
+Đăng ký Event của bạn nên được thêm vào `{module}.services.yml` ở file gốc của module của bạn.
 
-The following would register the event subscriber in the previous section:
+Đoạn code sau sẽ đăng ký event của bạn đã viết trên.
 
 ```yaml
     # mymodule.services.yml
@@ -88,16 +88,16 @@ The following would register the event subscriber in the previous section:
 [commerce_order.services.yml]: https://github.com/drupalcommerce/commerce/blob/080ca52fbb9ec73b9eeece5487a62d221e75ed04/modules/order/commerce_order.services.yml#L29
 [TimestampEventSubscriber.php]: https://github.com/drupalcommerce/commerce/blob/080ca52fbb9ec73b9eeece5487a62d221e75ed04/modules/order/src/EventSubscriber/TimestampEventSubscriber.php
 
-Subscribing to Transition Events
+Đăng ký các Transition Event
 --------------------------------
 
-In many cases we may want to do more when a transition occurs than simply moving the order to the next state. Let's say that we want to send an email to the customer when an order has been processed and is awaiting for fulfillment. That should happen when a store manager clicks on the "Process order" button in the example above.
+Trong nhiều trường hợp chúng ta có thể muốn làm nhiều hơn khi mà việc chuyển tiếp xảy ra hơn là chỉ chuyển sang state kế tiếp. Giả sử chúng ta muốn gởi một email đến khách hàng khi đơn hàng đang được xử lý và đang chờ hoàn tất. Điều này nên xảy ra khi quản lý cửa hàng click vào nút "Process Order" trong ví dụ dưới
 
-The state_machine module that provides the foundation for the workflows emits two events when a transition occurs. The events are named ``commerce_order.TRANSITION_ID.TRANSITION_PHASE``, where ``TRANSITION_ID`` is the key of the transition's definition in the YAML file, and ``TRANSITION_PHASE`` is "pre_transition" for the first event that is emitted just before the transition has occurred, and "post_transition" for the second event that is emitted just after it.
+Module state_machine cung cấp nền tảng cho workflows phát ra 2 sự kiện khi chuyển tiếp xảy ra. Những event được gọi là ``commerce_order.TRANSITION_ID.TRANSITION_PHASE``, trong đó ``TRANSITION_ID`` là key của định nghĩa transition trong file YAML, và ``TRANSITION_PHASE``  là "pre_transition" cho event đầu tiên được phát ra trước khi transition xảy ra, và "post_transition" cho event thứ 2 được phát ra sau đó.
 
-In our case we want to send the email after the transition to the Fulfillment state has occurred. We therefore need to create an event subscriber that listens to the ``commerce_order.fulfill.post_transition`` event.
+Trong trường hợp chúng ta muốn gửi mail sau khi transition đến state Fulfillment xảy ra. Chúng ta cần tạo ra một event subscriber để lắng nghe event ``commerce_order.fulfill.post_transition`` 
 
-Here is an example that you can modify according to your requirements.
+Dưới đây là một ví dụ mà bạn có thể sửa đổi dựa vào yêu cầu của bạn.
 
 ```php
     // my_module/src/EventSubscriber/OrderFulfillmentSubscriber.php
@@ -194,7 +194,7 @@ Here is an example that you can modify according to your requirements.
     }
 ```
 
-Note that the following functions are made available by the event, if you need to execute more advanced logic based on the state that you are coming from or the workflow that the transition is part of.
+Lưu ý rằng những hàm sau được cung cấp bởi event, nếu bạn cần thực thi nhiều hơn logic nâng cao dựa vào state mà bạn đến từ hoặc workflow mà transtion thuộc về.
 
 ```php
     $fromState = $event->getFromState();
@@ -202,7 +202,7 @@ Note that the following functions are made available by the event, if you need t
     $workflow = $event->getWorkflow();
 ```
 
-At last, don't forget to register your event subscriber.
+Cuối cùng đừng quên đăng ký event của bạn.
 
 ```yaml
     // my_module/my_module.services.yml

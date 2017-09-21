@@ -6,14 +6,14 @@ taxonomy:
 
 ! Tài liệu này cũng bao gồm quản lý đơn hàng và xử lý chung.
 
-## Liên kết kiểu order vời một Workflow.
+## Liên kết kiểu đơn hàng vời một Workflow.
 
-Một kiểu đơn hàng có thể liên kết với workflow riêng, và điều này ép đơn hàng phải theo luật của workflows như là chỉ di chuyển thông qua các transitions đã được định nghĩa. Để liên kệt một kiểu đơn hàng với đon hàng workflow, vào ``/admin/commerce/config/order-types`` để chỉnh sửa loại đơn hàng mong muốn. Bạn có thể chọn workflow mong muốn thông qua trường Workflow dropdown. Lưu form này lại.
+Một kiểu đơn hàng có thể liên kết với workflow riêng, và điều này ép đơn hàng phải theo luật của workflows như là chỉ di chuyển thông qua các transitions đã được định nghĩa. Để liên kết một kiểu đơn hàng với order workflow, vào ``/admin/commerce/config/order-types`` để chỉnh sửa loại đơn hàng mong muốn. Bạn có thể chọn workflow mong muốn thông qua trường Workflow dropdown. Lưu form này lại.
 
 ![Associating an Order Type with an Order Workflow](../../images/order_workflow_association.jpg)
 
 Thay đổi Order Workflow
-===========================
+=======================
 
 
 Loại đơn hàng có thể có các kiểu workflows khác nhau dựa vào loại sản phẩm mà cửa hàng bạn đang bán và nếu sản phẩm có thể vận chuyển được v.v. Workflow mặc định của đơn hàng có 2 trạng thái, Draft và Completed. Tuy nhiên, nếu bạn chạy đang điều hành một cửa hàng lớn với sản phẩm có thể giao được, Workflow "Fulfillment, with Validation" có thể là thứ phù hợp nhất mà bạn cần.
@@ -27,11 +27,11 @@ Hãy xem thử cách làm việc của workflow này
 
 ## Order Fulfillment with Validation Workflow
 
-Với workflow Fulfillment, with validation, quá trình xử lý  diễn ra theo vòng tròn sau:
+Với workflow Fulfillment, with validation, quá trình xử lý  diễn ra theo vòng sau:
 
 ![](../../images/order_workflow.png)
 
-Bắt đầu với đơn hàng đang trong giỏ hàng, đang ở state Draft/Cart, sau đó, khi đơn hàng đã được đặt, nó được đặt vào state Validation. Khi bạn đã sẵn sàng để ship hàng, đơn hàng được chuyển sang state fulfillment. Và cuối cùng, một khi hàng đã rời khỏi cửa hàng, đơn hàng chính thức hoàn thành (state Completed)
+Bắt đầu với đơn hàng đang trong giỏ hàng đang ở state Draft/Cart, sau đó, khi đơn hàng đã được đặt, nó được chuyển sang state Validation. Khi bạn đã sẵn sàng để ship hàng, đơn hàng được chuyển sang state fulfillment. Và cuối cùng, một khi hàng đã rời khỏi cửa hàng, đơn hàng chính thức hoàn thành (state Completed)
 
 Bây giờ bạn đã hiểu tiến trình, hãy xem thử làm cách nào để bạn có thể tạo những đơn hàng thay cho khách hàng và di chuyển chúng theo vòng xử lý đơn hàng
 
